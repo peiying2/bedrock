@@ -1198,13 +1198,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_onboarding_user_actions-bundle.js',
     },
-    'firefox_onboarding_fxa_complex': {
-        'source_filenames': (
-            'js/base/mozilla-fxa-iframe.js',
-            'js/firefox/onboarding/fxa-complex.js',
-        ),
-        'output_filename': 'js/firefox_onboarding_fxa_complex-bundle.js',
-    },
     'firefox_pocket': {
         'source_filenames': (
             'js/base/uitour-lib.js',

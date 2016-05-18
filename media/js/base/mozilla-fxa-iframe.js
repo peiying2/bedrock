@@ -85,6 +85,12 @@ Mozilla.FxaIframe = (function() {
         window.dataLayer.push(data);
     };
 
+    var _userCallback = function(callbackName, data) {
+        if (typeof _config[callbackName] === 'function') {
+            _config[callbackName](data);
+        }
+    };
+
     // postMessage communication handlers
     var _onMessageReceived = function(e) {
         // make sure origin is as expected
@@ -124,34 +130,27 @@ Mozilla.FxaIframe = (function() {
 
     var _onPing = function(data) {
         // tell iframe we are expecting it
-        if (!_config.testing) { // allow unit test to bypass auth
+        if (_config.testing !== true) { // allow unit test to bypass auth
             var fxaFrameTarget = _$iframe[0].contentWindow;
-            fxaFrameTarget.postMessage(data, _host);
+            // data must be back in string format for postMessage
+            fxaFrameTarget.postMessage(JSON.stringify(data), _host);
         }
 
         // remember iframe has loaded
         _handshake = true;
 
-        if (typeof _config.onPing === 'function') {
-            _config.onPing(data);
-        }
+        _userCallback('onPing', data);
     };
 
     var _onLoaded = function(data) {
         _sendGAEvent('fxa-loaded');
-
-        if (typeof _config.onLoaded === 'function') {
-            _config.onLoaded(data);
-        }
+        _userCallback('onLoaded', data);
     };
 
     var _onResize = function(data) {
         // update iframe to accommodate new height
         _showIframe(data.data.height);
-
-        if (typeof _config.onResize === 'function') {
-            _config.onResize(data);
-        }
+        _userCallback('onResize', data);
     };
 
     var _onSignupMustVerify = function(data) {
@@ -161,18 +160,12 @@ Mozilla.FxaIframe = (function() {
         }
 
         _sendGAEvent('fxa-signup');
-
-        if (typeof _config.onSignupMustVerify === 'function') {
-            _config.onSignupMustVerify(data);
-        }
+        _userCallback('onSignupMustVerify', data);
     };
 
     var _onVerificationComplete = function(data) {
         _sendGAEvent('fxa-verified');
-
-        if (typeof _config.onVerificationComplete === 'function') {
-            _config.onVerificationComplete(data);
-        }
+        _userCallback('onVerificationComplete', data);
     };
 
     var _onLogin = function() {

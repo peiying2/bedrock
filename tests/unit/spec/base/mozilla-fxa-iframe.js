@@ -64,6 +64,16 @@ describe('mozilla-fxa-iframe.js', function() {
 
             expect($('#fxa').attr('src')).toContain('&email=' + encodeURIComponent(email));
         });
+
+        it('should not accept an invalid email address', function () {
+            var invalidEmail = 'thedude@abies';
+
+            Mozilla.FxaIframe.init({
+                userEmail: invalidEmail
+            });
+
+            expect($('#fxa').attr('src')).not.toContain('&email=');
+        });
     });
 
     describe('Mozilla.FxaIframe postMessage handling', function() {
