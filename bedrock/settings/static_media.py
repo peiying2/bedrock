@@ -104,6 +104,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/responsive-bundle.css',
     },
+    'pebbles': {
+        'source_filenames': (
+            'css/pebbles/base.less',
+            'css/tabzilla/tabzilla-static.less',
+        ),
+        'output_filename': 'css/pebbles-bundle.css',
+    },
     'oldIE': {
         'source_filenames': (
             'css/sandstone/oldIE.less',
@@ -652,6 +659,12 @@ PIPELINE_CSS = {
             'css/mozorg/home/home-ie8.less',
         ),
         'output_filename': 'css/home-ie8-bundle.css',
+    },
+    'home-new-a': {
+        'source_filenames': (
+            'css/mozorg/home/home-new-a.less',
+        ),
+        'output_filename': 'css/home-new-a-bundle.css',
     },
     'legal': {
         'source_filenames': (

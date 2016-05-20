@@ -1,0 +1,22 @@
+@import "lib.less";
+@import "reset.less";
+@import "fonts.less";
+
+html {
+    .font-size(100%);
+    background: #fff;
+}
+
+body {
+    .font-size(@base-font-size);
+    background: #fff;
+    color: @text-color-primary;
+    font-family: @base-font-family;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+    .fira-sans-light;
+    line-height: 1.1;
+    margin: 0 0 .25em;
+}
