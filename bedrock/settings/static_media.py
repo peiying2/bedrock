@@ -660,11 +660,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/home-ie8-bundle.css',
     },
-    'home-new-a': {
+    'home-a': {
         'source_filenames': (
-            'css/mozorg/home/home-new-a.less',
+            'css/mozorg/home/home-a.less',
+            'css/newsletter/moznewsletter-subscribe.less',
         ),
-        'output_filename': 'css/home-new-a-bundle.css',
+        'output_filename': 'css/home-a-bundle.css',
     },
     'legal': {
         'source_filenames': (

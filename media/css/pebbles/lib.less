@@ -55,68 +55,50 @@
 }
 
 
-// Gutter width remains the same for all grids
-@gridGutterWidth:         20px;
+// Media queries
+@mq-homer:    ~'screen and (min-width: 1400px)';
+@mq-marge:    ~'screen and (min-width: 1000px)';
+@mq-bart:     ~'screen and (min-width: 760px)';
+@mq-lisa:     ~'screen and (min-width: 480px)';
+@mq-maggie:   ~'screen and (max-width: 480px)';
 
-// Default grid: 12 columns at 60px
-@gridColumns:             12;
-@gridColumnWidth:         60px;
-@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+@mq-highres:  ~'only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx), only screen and (min-resolution: 144dpi)';
 
-// Tablet grid: 12 columns at 40px
-@gridColumnWidthNarrow:   40px;
-@gridRowWidthTablet:      (@gridColumns * @gridColumnWidthNarrow) + (@gridGutterWidth * (@gridColumns - 1));
 
-// Mobile grid: 5 columns at 40px
-@gridColumnsMobile:       5;
-@gridRowWidthMobile:      (@gridColumnsMobile * @gridColumnWidthNarrow) + (@gridGutterWidth * (@gridColumnsMobile - 1));
+// Content widths
+@width-homer:   1380px;
+@width-marge:   980px;
+@width-bart:    740px;
+@width-lisa:    460px;
+@width-maggie:  300px;
 
-// Mobile landscape grid: 7 columns at 40px
-@gridColumnsMobileWide:   7;
-@gridRowWidthMobileWide:  (@gridColumnsMobileWide * @gridColumnWidthNarrow) + (@gridGutterWidth * (@gridColumnsMobileWide - 1));
 
-// Breakpoints for common devices
-@breakDesktopWide:        1400px;
-@breakDesktop:            1000px;
-@breakTablet:             760px;
-@breakMobileLandscape:    480px;
-@breakMobile:             320px;
+// Grid columns
+@column-width:  8.333%; // 100% / 12 columns
+@gutter-width:  20px;
 
-// Page widths for common breakpoints
+// Column spans for standard column widths
+.span(@columns) {
+  .border-box;
+  float: none;
+  clear: both;
+  width: auto;
 
-// Desktop:
-//           (12cols ✕ 60px) =  720
-// +     (11 gutters ✕ 20px) =  220
-// + (2 page gutters ✕ 30px) =   60
-// --------------------------------
-//                           = 1000px
-//
-// Tablet:
-//           (12cols ✕ 40px) =  480
-// +     (11 gutters ✕ 20px) =  220
-// + (2 page gutters ✕ 30px) =   60
-// --------------------------------
-//                           =  760px
-//
-// Phone (landscape):
-//            (7cols ✕ 40px) =  280
-// +      (6 gutters ✕ 20px) =  120
-// + (2 page gutters ✕ 20px) =   40
-// --------------------------------
-//                           =  440px
-//
-// Phone (portrait):
-//            (5cols ✕ 40px) =  200
-// +      (4 gutters ✕ 20px) =   80
-// + (2 page gutters ✕ 20px) =   40
-// --------------------------------
-//                           =  320px
+  background: rgba(255,0,0,.1);
+  outline: 1px dotted rgba(255,0,0,.2);
 
-@widthDesktopWide:        1400px;
-@widthDesktop:            1000px;
-@widthTablet:             760px;
-@widthMobileLandscape:    440px;
-@widthMobile:             320px;
+  @media @mq-bart {
+    float: left;
+    clear: none;
+    width: @column-width * @columns;
+  }
+}
+
+.span-all() {
+    float: none;
+    width: auto;
+}
+
 
 .clearfix() {
     zoom: 1;
@@ -129,13 +111,6 @@
     }
 }
 
-.inset() {
-    background-color: rgb(233,233,233);
-    background-color: rgba(0,0,0,0.02);
-    @shadow: 0 0 3px rgba(0,0,0,0.1) inset;
-    .box-shadow(@shadow);
-    border-bottom: 1px solid #fff;
-}
 
 // Some mixins from http://markdotto.com/bootstrap
 // http://creativecommons.org/licenses/by/3.0/
@@ -268,62 +243,6 @@
 }
 
 
-// Column spans for standard column widths
-.span(@columns) {
-    float: left;
-    width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
-    margin: 0 (@gridGutterWidth / 2);
-}
-
-.span-all() {
-    float: none;
-    width: auto;
-    margin: 0 (@gridGutterWidth / 2);
-}
-
-.offset(@columns) {
-    margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
-}
-
-// Column spans for narrow column widths
-.span_narrow(@columns) {
-    float: left;
-    width: (@gridColumnWidthNarrow * @columns) + (@gridGutterWidth * (@columns - 1));
-    margin: 0 (@gridGutterWidth / 2);
-}
-
-.offset_narrow(@columns) {
-    margin-left: ((@gridColumnWidthNarrow + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
-}
-
-.button-hover-box-shadow(@color: #ffffff) {
-    @shadow:  @shadowPartBottom,
-              @shadowPartBottomInset,
-              inset 0px 12px 24px 2px saturate(@color, 10%);
-    .box-shadow(@shadow);
-}
-
-.button-focus-box-shadow(@color: #ffffff) {
-    @shadow:  @shadowPartBottom,
-              @shadowPartBottomInset,
-              0 0 0 2px fade(@color, 40%);
-    .box-shadow(@shadow);
-}
-
-@formFieldErrorShadow:       0 0 0 2px rgba(175, 50, 50, .4);
-@formFieldSelectErrorShadow: 0 0 0 3px rgba(175, 50, 50, .4);
-
-.form-field-error() {
-    border-color: rgb(175,50,50);
-    .box-shadow(@formFieldErrorShadow);
-}
-
-.required-star() {
-    content: " *";
-    .font-size(@smallFontSize);
-    font-weight: bold;
-    color: @linkRed;
-}
 
 /****************************************************************************/
 // Classes used to hide content from users. Choose wisely!

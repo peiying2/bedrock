@@ -1,6 +1,6 @@
-@import "lib.less";
-@import "reset.less";
-@import "fonts.less";
+@import 'lib.less';
+@import 'reset.less';
+@import 'fonts.less';
 
 html {
     .font-size(100%);
@@ -19,4 +19,29 @@ h1, h2, h3, h4, h5, h6, legend {
     .fira-sans-light;
     line-height: 1.1;
     margin: 0 0 .25em;
+}
+
+.section,
+.content {
+    .clearfix;
+    background: rgba(0,0,0,.1);
+    position: relative;
+}
+
+.section > .content {
+    .border-box;
+    margin: 0 auto;
+    padding: 20px;
+
+    @media @mq-bart {
+        width: @width-bart;
+    }
+
+    @media @mq-marge {
+        width: @width-marge;
+    }
+
+    @media @mq-homer {
+        width: @width-homer;
+    }
 }
