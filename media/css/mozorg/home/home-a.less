@@ -1,14 +1,313 @@
 @import '../../pebbles/lib.less';
 
-.section-hero h1 {
-    .span(6);
+// Mixins
+.invert-text() {
+    color: #fff;
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active,
+    a:focus {
+        color: #fff;
+    }
 }
 
-.col-samp {
-    .clearfix;
+
+// General styles
+.section-lead,
+.section-body {
+    padding: 20px;
 }
 
-.col-samp li {
-    list-style: none;
-    .span(1);
+
+// Header
+.masthead {
+    background: @color-mozred;
+    .invert-text;
+
+    .content {
+        padding: 60px 20px 0;
+    }
+
+    #tabzilla {
+        .hidden;
+
+        @media @mq-bart {
+            display: block;
+        }
+    }
+
+    .masthead-logo {
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 10px 0;
+
+        img {
+            width: 125px;
+            height: 33px;
+        }
+    }
+}
+
+// Global main nav
+.masthead-nav-main {
+    .fira-sans-light;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    .toggle {
+        background: red;
+        cursor: pointer;
+        display: block;
+        height: 50px;
+        overflow: hidden;
+        position: relative;
+        text-indent: -999em;
+        width: 50px;
+    }
+}
+
+#nav-main-menu {
+    background: red;
+    left: -300px;
+    overflow: visible;
+    position: absolute;
+    top: 50px;
+    width: 200px;
+    padding: 20px;
+    z-index: 99;
+}
+
+.masthead-nav-main:hover #nav-main-menu,
+.masthead-nav-main .toggle:focus + #nav-main-menu {
+    left: auto;
+}
+
+.js #nav-main-menu {
+    left: auto;
+    display: none;
+}
+
+
+// Page nav
+.masthead-nav-page {
+    .fira-sans-light;
+    background: darken(@color-mozred, 10%);
+    padding: 1px 0;
+    margin: 0 -20px;
+    text-align: center;
+    line-height: 1.1;
+
+    a {
+        .border-box;
+        .transition(background-color 150ms ease);
+        display: block;
+        height: 100%;
+        padding: 10px;
+        margin: 1px;
+        text-decoration: none;
+        vertical-align: middle;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    .primary {
+        .flexbox;
+        margin-bottom: 2px;
+
+        li {
+            float: left;
+            width: 33.33%;
+        }
+
+        a {
+            background: @color-mozred;
+
+            &:hover,
+            &:focus {
+                background: darken(@color-mozred, 5%);
+            }
+        }
+    }
+
+    .secondary {
+        .flexbox;
+        margin: 0 -1px 1px;
+        text-transform: uppercase;
+
+        li {
+            float: left;
+            width: 50%;
+        }
+
+        .nav-secondary-donate a {
+            background: #e88008;
+
+            &:hover,
+            &:focus {
+                background: #dc6708;
+            }
+        }
+
+        .nav-secondary-firefox a {
+            background: #6fbe4a;
+
+            &:hover,
+            &:focus {
+                background: darken(#6fbe4a, 5%);
+            }
+        }
+    }
+}
+
+
+// Intro
+.section-intro {
+    .invert-text;
+    background: linear-gradient(0deg, rgba(0, 0, 0, .5) 10%, rgba(0, 0, 0, 0) 40%), #00a7de url(/media/img/home/new/intro/megaphone.jpg) center center no-repeat;
+    .background-size(cover);
+
+    .content {
+        padding: 260px 40px 40px;
+        min-height: 220px;
+    }
+
+    h1 {
+        .fira-sans-light;
+        font-weight: normal;
+        font-style: italic;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(0, 0, 0, .01), 0 0 5px rgba(0, 0, 0, .025), 0 1px 1px rgba(0, 0, 0, .5);
+    }
+}
+
+
+// Mozilla in action
+.section-action {
+    background: #fff;
+
+    .section-lead h2 {
+        color: #00b086;
+    }
+
+    .section-body {
+        .invert-text;
+        background: #00b086;
+    }
+}
+
+
+// Our tech
+.section-innovation {
+    .invert-text;
+    background: #00d2fb;
+
+    .section-lead {
+        #gradient > .vertical(rgba(0, 130, 186, .8), rgba(0, 130, 186, 0));
+    }
+
+    .section-body {
+        background: #e33f63;
+    }
+}
+
+
+// Firefox
+.section-firefox {
+    .invert-text;
+    background: #0a3269;
+}
+
+
+// Externals (Add-ons, careers, support)
+.section-externals {
+    background: #fff;
+    text-align: center;
+
+    ul {
+        position: relative;
+        width: 100%;
+        padding: 60px 0 40px;
+        .clearfix;
+
+        li {
+            max-width: @width-lisa;
+            margin: 0 auto 30px;
+
+            @media @mq-bart {
+                float: left;
+                width: 33.3%;
+                margin: 0;
+            }
+        }
+    }
+
+    h3 {
+        .font-size(20px);
+        color: @color-text-secondary;
+        padding-top: 100px;
+        position: relative;
+
+        &:before {
+            background: url(/media/img/home/voices/secondary-icon-sprite-v2.png) no-repeat center top;
+            content: '';
+            height: 84px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        @media @mq-bart {
+            .font-size(24px);
+        }
+    }
+
+    a {
+        display: block;
+        padding: 0 50px;
+        text-align: center;
+        text-decoration: none;
+
+        &.add-ons h2:before {
+            background-position: center 0;
+        }
+        &.careers h2:before {
+            background-position: center -86px;
+        }
+        &.help h2:before {
+            background-position: center -172px;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+
+            h2 {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    p {
+        .font-size(16px);
+        color: @color-text-secondary;
+    }
+}
+
+
+// Footer
+.section-footer {
+    .invert-text;
+    background: #666;
 }

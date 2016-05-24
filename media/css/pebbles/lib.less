@@ -19,26 +19,24 @@
 // Assumes default 16px to match sizes but will respect user preferences.
 // Pass through any units that aren't px or rem
 .font-size(@value) {
-    font-size: @value;
+        font-size: @value;
 }
 
 // When unit is pixels, pass it through and convert to rem
 .font-size(@value) when (ispixel(@value)) {
-    font-size: @value;
-    .font-size(unit(@value / 16, rem));
+        font-size: @value;
+        .font-size(unit(@value / 16, rem));
 }
 
 // When unit is rem, convert it to pixels and pass it through
 .font-size(@value) when (isunit(@value, rem)) {
-    font-size: unit(@value * 16, px);
-    font-size: @value;
+        font-size: unit(@value * 16, px);
+        font-size: @value;
 }
 
 // Text colors
-@text-color-primary:   #333;
-@text-color-secondary: #484848;
-@text-color-tertiary:  #666;
-@text-color-light:     #bbb;
+@color-text-primary:   #444;
+@color-text-secondary: #484848;
 
 // Brand colors
 @color-mozred:  #c13832;
@@ -46,12 +44,12 @@
 @color-mozgray: #56565a;
 
 .fira-sans() {
-    font-family: @base-font-family;
+        font-family: @base-font-family;
 }
 
 .fira-sans-light() {
-    font-family: 'Fira Sans Light', X-LocaleSpecific-Light, @base-font-family;
-    font-weight: normal;
+        font-family: 'Fira Sans Light', X-LocaleSpecific-Light, @base-font-family;
+        font-weight: normal;
 }
 
 
@@ -79,19 +77,19 @@
 
 // Column spans for standard column widths
 .span(@columns) {
-  .border-box;
-  float: none;
-  clear: both;
-  width: auto;
+    .border-box;
+    clear: both;
+    float: none;
+    width: auto;
 
-  background: rgba(255,0,0,.1);
-  outline: 1px dotted rgba(255,0,0,.2);
+    background: rgba(255,0,0,.1);
+    outline: 1px dotted rgba(255,0,0,.2);
 
-  @media @mq-bart {
-    float: left;
-    clear: none;
-    width: @column-width * @columns;
-  }
+    @media @mq-bart {
+        clear: none;
+        float: left;
+        width: @column-width * @columns;
+    }
 }
 
 .span-all() {
@@ -103,11 +101,11 @@
 .clearfix() {
     zoom: 1;
     &:after {
-        display: block;
-        visibility: hidden;
-        height: 0;
         clear: both;
-        content: ".";
+        content: '';
+        display: block;
+        height: 0;
+        visibility: hidden;
     }
 }
 
@@ -116,58 +114,58 @@
 // http://creativecommons.org/licenses/by/3.0/
 
 .transition(@transition: all linear .25s) {
-  -webkit-transition: @transition;
-  transition: @transition;
+    -webkit-transition: @transition;
+    transition: @transition;
 }
 
 .transform(@transform: inherit) {
-  -webkit-transform: @transform;
-  -ms-transform: @transform;
-  transform: @transform;
+    -webkit-transform: @transform;
+    -ms-transform: @transform;
+    transform: @transform;
 }
 
 .transform-origin(@transform-origin: left top) {
-  -webkit-transform-origin: @transform-origin;
-  -ms-transform-origin: @transform-origin;
-  transform-origin: @transform-origin;
+    -webkit-transform-origin: @transform-origin;
+    -ms-transform-origin: @transform-origin;
+    transform-origin: @transform-origin;
 }
 
 .transform-style(@transform-style: inherit) {
-  -webkit-transform-style: @transform-style;
-  -ms-transform-style: @transform-style;
-  transform-style: @transform-style;
+    -webkit-transform-style: @transform-style;
+    -ms-transform-style: @transform-style;
+    transform-style: @transform-style;
 }
 
 // Extra mixins for fine-tuned transitions
 .transition-property(@transition-property: all) {
-  -webkit-transition-property: @transition-property;
-  transition-property: @transition-property;
+    -webkit-transition-property: @transition-property;
+    transition-property: @transition-property;
 }
 
 .transition-duration(@transition-duration: 1s) {
-  -webkit-transition-duration: @transition-duration;
-  transition-duration: @transition-duration;
+    -webkit-transition-duration: @transition-duration;
+    transition-duration: @transition-duration;
 }
 
 .transition-timing-function(@transition-timing-function: linear) {
-  -webkit-transition-timing-function: @transition-timing-function;
-  transition-timing-function: @transition-timing-function;
+    -webkit-transition-timing-function: @transition-timing-function;
+    transition-timing-function: @transition-timing-function;
 }
 
 .transition-delay(@transition-delay: 0s) {
-  -webkit-transition-delay: @transition-delay;
-  transition-delay: @transition-delay;
+    -webkit-transition-delay: @transition-delay;
+    transition-delay: @transition-delay;
 }
 
 .animation(@parameters) {
-  -webkit-animation: @parameters;
-  animation: @parameters;
+    -webkit-animation: @parameters;
+    animation: @parameters;
 }
 
 .border-box() {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .flexbox() {
@@ -210,36 +208,36 @@
 
 // Gradients
 #gradient {
-  .horizontal (@startColor: #555, @endColor: #333) {
-    background-color: @endColor;
-    background-repeat: repeat-x;
-    background-image: -webkit-linear-gradient(left, @startColor, @endColor); /* Safari 5.1+, Chrome 10+ */
-    -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",@startColor,@endColor); /* IE8+ */
-    background-image: linear-gradient(to right, @startColor, @endColor); /* the standard */
-  }
-  .vertical (@startColor: #555, @endColor: #333) {
-    background-color: @endColor;
-    background-repeat: repeat-x;
-    background-image: -webkit-linear-gradient(top, @startColor, @endColor); /* Safari 5.1+, Chrome 10+ */
-    -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor); /* IE8+ */
-    background-image: linear-gradient(to bottom, @startColor, @endColor); /* the standard */
-  }
-  .directional (@startColor: #555, @endColor: #333, @deg: 45deg) {
-    background-color: @endColor;
-    background-repeat: repeat-x;
-    background-image: -webkit-linear-gradient(@deg, @startColor, @endColor); /* Safari 5.1+, Chrome 10+ */
-    background-image: linear-gradient(@deg, @startColor, @endColor); /* the standard */
-  }
-  .vertical-three-colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
-    background-color: @endColor;
-    background-repeat: no-repeat;
-    background-image: -webkit-linear-gradient(top, @startColor 0%, @midColor @colorStop, @endColor 100%); /* Chrome10+,Safari5.1+ */
-    background-image: linear-gradient(to bottom, @startColor 0%, @midColor @colorStop, @endColor 100%); /* the standard */
-  }
-  .radial(@posX:center, @posY:center, @shape:circle, @size:closest-side, @startColor:white, @endColor:black){
-    background-image: -webkit-radial-gradient(@posX @posY, @shape @size, @startColor, @endColor);
-    background-image: radial-gradient(@shape @size at @posX @posY, @startColor, @endColor);
-  }
+    .horizontal (@startColor: #555, @endColor: #333) {
+        background-color: @endColor;
+        background-repeat: repeat-x;
+        background-image: -webkit-linear-gradient(left, @startColor, @endColor); /* Safari 5.1+, Chrome 10+ */
+        -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",@startColor,@endColor); /* IE8+ */
+        background-image: linear-gradient(to right, @startColor, @endColor); /* the standard */
+    }
+    .vertical (@startColor: #555, @endColor: #333) {
+        background-color: @endColor;
+        background-repeat: repeat-x;
+        background-image: -webkit-linear-gradient(top, @startColor, @endColor); /* Safari 5.1+, Chrome 10+ */
+        -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@startColor,@endColor); /* IE8+ */
+        background-image: linear-gradient(to bottom, @startColor, @endColor); /* the standard */
+    }
+    .directional (@startColor: #555, @endColor: #333, @deg: 45deg) {
+        background-color: @endColor;
+        background-repeat: repeat-x;
+        background-image: -webkit-linear-gradient(@deg, @startColor, @endColor); /* Safari 5.1+, Chrome 10+ */
+        background-image: linear-gradient(@deg, @startColor, @endColor); /* the standard */
+    }
+    .vertical-three-colors(@startColor: #00b3ee, @midColor: #7a43b6, @colorStop: 50%, @endColor: #c3325f) {
+        background-color: @endColor;
+        background-repeat: no-repeat;
+        background-image: -webkit-linear-gradient(top, @startColor 0%, @midColor @colorStop, @endColor 100%); /* Chrome10+,Safari5.1+ */
+        background-image: linear-gradient(to bottom, @startColor 0%, @midColor @colorStop, @endColor 100%); /* the standard */
+    }
+    .radial(@posX:center, @posY:center, @shape:circle, @size:closest-side, @startColor:white, @endColor:black){
+        background-image: -webkit-radial-gradient(@posX @posY, @shape @size, @startColor, @endColor);
+        background-image: radial-gradient(@shape @size at @posX @posY, @startColor, @endColor);
+    }
 }
 
 
@@ -249,14 +247,14 @@
 
 // Hide visually, but not to screen readers
 .visually-hidden() {
-    position: absolute!important;
+    border: 0;
+    clip: rect(0 0 0 0);
     height: 1px;
-    width: 1px;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0 0 0 0);
     padding: 0;
-    border: 0;
+    position: absolute !important;
+    width: 1px;
 }
 
 // Hide visually & from screen readers
@@ -268,9 +266,9 @@
 
 // not the most up to date method, but works in IE7
 .image-replaced() {
+    overflow: hidden;
     text-indent: 120%; // extra 20% to account for fancy fonts that may overhang
     white-space: nowrap;
-    overflow: hidden;
 }
 
 // Flip an element horizontally for RTL locales such as Arabic. Usually applied
@@ -295,41 +293,41 @@
 
 
 .multi-column(@width: auto, @count: auto, @gap: normal) {
-  -webkit-column-width: @width;
-     -moz-column-width: @width;
-       -o-column-width: @width;
-          column-width: @width;
-  -webkit-column-count: @count;
-     -moz-column-count: @count;
-       -o-column-count: @count;
-          column-count: @count;
-    -webkit-column-gap: @gap;
-       -moz-column-gap: @gap;
-         -o-column-gap: @gap;
-            column-gap: @gap;
+    -webkit-column-width: @width;
+       -moz-column-width: @width;
+         -o-column-width: @width;
+            column-width: @width;
+    -webkit-column-count: @count;
+       -moz-column-count: @count;
+         -o-column-count: @count;
+            column-count: @count;
+      -webkit-column-gap: @gap;
+         -moz-column-gap: @gap;
+           -o-column-gap: @gap;
+              column-gap: @gap;
 }
 
 .multi-column-clear() {
-  .multi-column(auto, auto, normal);
+    .multi-column(auto, auto, normal);
 }
 
 .multi-column-avoid-break() {
-            page-break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-     -moz-column-break-inside: avoid;
-       -o-column-break-inside: avoid;
-          column-break-inside: avoid;
+    page-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+       -moz-column-break-inside: avoid;
+         -o-column-break-inside: avoid;
+            column-break-inside: avoid;
 }
 
 // A helper mixin for applying high-resolution background images (http://www.retinajs.com)
 // File-names should follow:
 //  example.png
 //  example-high-res.png
-@highdpi: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
 .at2x(@path, @w: auto, @h: auto) {
     background-image: url(@path);
     @at2x_path: ~`@{path}.replace(/\.\w+$/, function(match) { return "-high-res" + match; })`;
-    @media @highdpi {
+
+    @media @mq-highres {
         background-image: url("@{at2x_path}");
         -webkit-background-size: @w @h;
                 background-size: @w @h;

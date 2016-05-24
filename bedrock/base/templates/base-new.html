@@ -91,42 +91,48 @@
       {% block string_data %}{% endblock %}></div>
 
   {% block site_header %}
-    <header id="masthead">
+    <header class="section masthead" id="masthead">
+      <div class="content">
 
-    {% block tabzilla_tab %}
-      <div id="tabzilla">
-        <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+      {% block tabzilla_tab %}
+        <div id="tabzilla">
+          <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+        </div>
+      {% endblock %}
+
+      {% block site_header_nav %}
+        <nav class="masthead-nav-main" id="nav-main">
+          <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
+          <ul id="nav-main-menu">
+            <li class="first about-item">
+              <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{_('About')}}</a>
+            </li>
+            <li class="contribute-item">
+              <a href="{{ url('mozorg.contribute') }}" data-link-type="nav" data-link-name="Participate">{{_('Participate')}}</a>
+            </li>
+            <li class="products-item">
+              <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{_('Firefox')}}</a>
+            </li>
+            <li class="last donate-item">
+              <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{_('Donate')}}</a>
+            </li>
+          </ul>
+        </nav>
+      {% endblock %}
+
+      {% block site_header_logo %}
+        <h2 class="masthead-logo"><a href="{{ url('mozorg.home') }}">{{ high_res_img('sandstone/header-mozilla-stone.png', {'alt': 'Mozilla', 'width': '170', 'height': '45'}) }}</a></h2>
+      {% endblock %}
+
       </div>
-    {% endblock %}
-
-    {% block site_header_nav %}
-      <nav id="nav-main" role="navigation">
-        <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
-        <ul id="nav-main-menu">
-          <li class="first about-item">
-            <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{_('About')}}</a>
-          </li>
-          <li class="contribute-item">
-            <a href="{{ url('mozorg.contribute') }}" data-link-type="nav" data-link-name="Participate">{{_('Participate')}}</a>
-          </li>
-          <li class="products-item">
-            <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{_('Firefox')}}</a>
-          </li>
-          <li class="last donate-item">
-            <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{_('Donate')}}</a>
-          </li>
-        </ul>
-      </nav>
-    {% endblock %}
-
-    {% block site_header_logo %}
-      <h2><a href="{{ url('mozorg.home') }}">{{ high_res_img('sandstone/header-mozilla-stone.png', {'alt': 'Mozilla', 'width': '170', 'height': '45'}) }}</a></h2>
-    {% endblock %}
-
     </header>
   {% endblock %}
 
   {% block content %}{% endblock %}
+
+  {% block site_footer %}
+    {% include 'includes/site-footer.html' %}
+  {% endblock %}
 
   <!--[if IE 9]>
     <script src="{{ static('js/libs/matchMedia.js') }}"></script>
