@@ -14,6 +14,24 @@
     font-style: normal;
 }
 
+#aframe-iframe-wrapper {
+    background: #24caff url('/media/img/home/introducing-aframe.png') center center no-repeat;
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+}
+
+#aframe-iframe {
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+    width: 100%;
+
+    &.loaded {
+        opacity: 1;
+    }
+}
+
 .promo-grid-wrapper {
     position: relative;
     width: 100%;

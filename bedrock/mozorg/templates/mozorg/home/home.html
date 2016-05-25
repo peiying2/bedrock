@@ -165,6 +165,7 @@
         </li>
       {% if LANG.startswith('en-') %}
         <li id="promo-6" class="item promo-large-landscape encryption" tabindex="0">
+          {#
           <h2 class="primary go">{{ _('Encryption helps <br>protect your privacy') }}</h2>
           <a class="panel-link" rel="external" href="https://advocacy.mozilla.org/encrypt/?ref=2016_Encryption&amp;utm_campaign=2016_Encryption&amp;utm_source=mozilla.org&amp;utm_medium=referral" data-link-type="tile" data-link-name="Encryption helps protect your privacy">
             <div class="secondary">
@@ -172,6 +173,9 @@
               <p class="more">{{ _('Learn more') }}</p>
             </div>
           </a>
+          #}
+          <!--<div class="aframer loaded" id="aframe-static"></div>-->
+          <div class="aframer" id="aframe-iframe-wrapper"></div>
         </li>
       {% else %}
         <li id="promo-6" class="item promo-large-landscape support" tabindex="0">

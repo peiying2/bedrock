@@ -10,6 +10,29 @@ $(function () {
     var $downloadPromo = $('.promo-small-landscape.firefox-download');
     var hasTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints;
 
+    var $aframeIframe;
+
+    function isCanvasSupported() {
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext && elem.getContext('2d'));
+    }
+
+    if (isCanvasSupported()) {
+        $aframeIframe = $('<iframe>');
+
+        $aframeIframe.on('load', function() {
+            $(this).addClass('loaded');
+        });
+
+        $aframeIframe.attr({
+            frameborder: 0,
+            id: 'aframe-iframe',
+            src: 'https://aframe.io/aframe/examples/animation-aframe-logo/?ui=false'
+        });
+
+        $('#aframe-iframe-wrapper').append($aframeIframe);
+    }
+
     /*
      * For non-touch devices promos are transitioned on hover
      */
