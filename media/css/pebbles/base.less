@@ -1,0 +1,80 @@
+@import 'lib.less';
+@import 'reset.less';
+@import 'fonts.less';
+
+html {
+    .font-size(100%);
+    background: #fff;
+}
+
+body {
+    .font-size(@base-font-size);
+    background: #fff;
+    border-top: 2px solid #fff;
+    color: @color-text-primary;
+    font-family: @base-font-family;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+    line-height: 1.1;
+    margin: 0 0 .25em;
+}
+
+// We most frequently use lists for semantic structure and don't actually
+// want to display them as lists. It's simpler to reset lists globally
+// and only display them as lists in text when needed with the .prose class.
+ul, ol {
+    list-style: none;
+}
+
+ul.prose {
+    list-style: disc;
+    margin-left: 30px;
+
+    li li {
+        list-style: circle;
+    }
+}
+
+ol.prose {
+    list-style: decimal;
+    margin-left: 30px;
+
+    li li {
+        list-style: lower-alpha;
+    }
+}
+
+
+.masthead #tabzilla {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+
+.section,
+.content {
+    .clearfix;
+    position: relative;
+}
+
+.content {
+    .border-box;
+    margin: 0 auto;
+    padding: 20px;
+    min-width: @width-maggie;
+
+    @media @mq-bart {
+        width: @width-bart;
+    }
+
+    @media @mq-marge {
+        width: @width-marge;
+    }
+
+    @media @mq-homer {
+        width: @width-homer;
+    }
+}

@@ -1,0 +1,206 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-new.html" %}
+
+{% add_lang_files "mozorg/home/index" %}
+
+{% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
+
+{% block page_image %}{{ static('img/home/page-image.png') }}{% endblock %}
+
+{% block page_title %}
+  {{_('We’re building a better Internet')}}
+{% endblock %}
+
+{% block page_desc %}
+  {{_('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource open and accessible to all.')}}
+{% endblock %}
+
+{% block body_id %}home{% endblock %}
+{% block body_class %}home-variant home-variant-a{% endblock %}
+
+{% block extra_meta %}
+<!-- validates bing webmaster tools -->
+<meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574">
+<!-- YouTube Verification -->
+<meta name="google-site-verification" content="U9a6gH32vLIykvntaDToj-ytYhlZ1AfAgVEKstixQIE">
+{% endblock %}
+
+{% block extrahead %}
+  {% stylesheet 'home-a' %}
+{% endblock %}
+
+{% block optimizely %}
+  {% if waffle.switch('mozorg-home-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}
+  <header class="section masthead" id="masthead">
+    <div class="content">
+
+    {% block tabzilla_tab %}
+      <div id="tabzilla">
+        <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+      </div>
+    {% endblock %}
+
+    {% block site_header_nav %}
+      <nav class="masthead-nav-main" id="nav-main">
+        <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
+        <ul id="nav-main-menu">
+          <li class="first about-item">
+            <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{ _('About') }}</a>
+          </li>
+          <li class="contribute-item">
+            <a href="{{ url('mozorg.contribute') }}" data-link-type="nav" data-link-name="Participate">{{ _('Participate') }}</a>
+          </li>
+          <li class="products-item">
+            <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
+          </li>
+        </ul>
+      </nav>
+    {% endblock %}
+
+    {% block site_header_logo %}
+      <h2 class="masthead-logo"><a href="{{ url('mozorg.home') }}">{{ high_res_img('sandstone/mozilla-wordmark-white.png', {'alt': 'Mozilla', 'width': '170', 'height': '45'}) }}</a></h2>
+    {% endblock %}
+
+    <nav class="masthead-nav-page" id="nav-page">
+      <ul id="nav-page-primary" class="primary">
+        <li class="nav-primary-action"><a href="#action">Mozilla In Action</a></li>
+        <li class="nav-primary-tech"><a href="#innovation">Web Innovations</a></li>
+        <li class="nav-primary-firefox"><a href="#firefox">Firefox</a></li>
+      </ul>
+
+      <ul id="nav-page-secondary" class="secondary">
+        <li class="nav-secondary-donate"><a href="#">Donate</a></li>
+        <li class="nav-secondary-firefox"><a href="#">Download Firefox</a></li>
+      </ul>
+    </nav>
+
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <section class="section section-intro" id="intro">
+    <div class="content">
+      <h1>
+        We are a non-profit with one mission:
+        <br>
+        defend the freedom of the internet
+      </h1>
+    </div>
+  </section>
+
+  <section class="section section-action" id="action">
+    <div class="section-lead">
+      <div class="content">
+        <h2>Building a global movement</h2>
+        <p>
+          We are an active, global community of educators, builders, advocates
+          and experts working to keep to the internet a shared global resource,
+          open and accessible to all.
+        </p>
+      </div>
+    </div>
+
+    <img src="{{ static('img/home/new/encryption/encryption-poster.png') }}" alt="">
+
+    <div class="section-body">
+      <div class="content">
+        <h3>Why we fight for Encryption</h3>
+        <p>
+          The protection of our personal information is an essential part of
+          life. As we work to protect this necessary tool, we encourage everyone
+          to stand up for encryption.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-innovation" id="innovation">
+    <div class="section-lead">
+      <div class="content">
+        <h2>The power of the web</h2>
+        <p>
+          At Mozilla, we are constantly creating new technologies that assist
+          developers, support openness and challenge what is possible on the
+          internet.
+        </p>
+      </div>
+    </div>
+
+    <img src="{{ static('img/home/new/a-frame/a-frame.png') }}" alt="">
+
+    <div class="section-body">
+      <div class="content">
+        <h3>Introducing A-Frame</h3>
+        <p>
+          Check out this ground-breaking, open-source framework for easily
+          creating web-based virtual reality experiences.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-firefox" id="firefox">
+    <div class="section-lead">
+      <div class="content">
+        <h2>Browse freely</h2>
+        <p>
+          With Firefox for desktop, iOS and Android, it’s never been easier
+          to have a fast, reliable web experience everywhere you go. And with
+          a Firefox Account, you can sync your browser everywhere you use it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-externals" id="externals">
+    <ul class="content">
+      <li>
+        <a class="add-ons" rel="external" href="https://addons.mozilla.org/">
+          <h3>{{ _('Add-ons') }}</h3>
+          <p>{{ _('Compare prices, check the weather, listen to music, send a tweet and more right from Firefox.') }}</p>
+        </a>
+      </li>
+      <li>
+        <a class="careers" rel="external" href="https://careers.mozilla.org/">
+          <h3>{{ _('Careers') }}</h3>
+          <p>{{ _('Learn about the benefits of working at Mozilla and view open positions around the world.') }}</p>
+        </a>
+      </li>
+      <li>
+        <a class="help" rel="external" href="https://support.mozilla.org/">
+          <h3>{{ _('Need help?') }}</h3>
+          <p>{{ _('Get answers to your questions about Firefox and all Mozilla products from our support team.') }}</p>
+        </a>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<aside class="section section-newsletter" id="newsletter-subscribe">
+  <div class="content">
+  {% if LANG.startswith('en-') %}
+    {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='light') }}
+  {% else %}
+    {{ email_newsletter_form(button_class='light') }}
+  {% endif %}
+  </div>
+</aside>
+{% endblock %}
+
+{% block site_footer %}
+<footer class="section section-footer" id="footer">
+  <div class="content">
+    footer
+  </div>
+</footer>
+{% endblock %}
